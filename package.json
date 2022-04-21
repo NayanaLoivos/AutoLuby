@@ -1,0 +1,31 @@
+{
+  "name": "AutoLuby",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./AutoLuby/index.js",
+  "scripts": {
+    "start": "nodemon ./AutoLuby/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NayanaLoivos/AutoLuby.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NayanaLoivos/AutoLuby/issues"
+  },
+  "homepage": "https://github.com/NayanaLoivos/AutoLuby#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "path": "^0.12.7",
+    "sequelize": "^6.19.0",
+    "sequelize-cli": "^6.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
