@@ -1,0 +1,8 @@
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('./AutoLuby/config', 'config.json'),
+  'models-path': path.resolve('./AutoLuby/models'),
+  'seeders-path': path.resolve('./AutoLuby/seeders'),
+  'migrations-path': path.resolve('./AutoLuby/migrations')
+}
