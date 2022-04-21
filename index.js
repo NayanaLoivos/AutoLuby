@@ -1,16 +1,10 @@
     const express = require('express');
+    const routes = require('./routes');
 
     app = express();
+    const port = 3004;    
 
-    app.use(express.json());
-    app.use(express.urlencoded( { extended: true } ) );
-
-    const port = 3004;
-
-    app.get('/teste', (req, res) => res
-        .status(200)
-        .send({ mensagem: 'Olá API!'
-    }));
+    routes(app);
 
     app.listen(port, () => console.log(`Servidor rodando na port ${port}`));
 
