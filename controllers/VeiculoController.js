@@ -48,6 +48,33 @@ class VeiculoController
             return res.status(500).json(error.message);
         }
     }
+    static async pegaVendaUmVeiculo ( req, res ) {
+        const { veiculoId } = req.params;
+        try {
+            const vendaUmVeiculo = await database.Vendas.findOne({ 
+                where: {                                    
+                    veiculo_id: Number(veiculoId)
+                } 
+            });
+            return res.status(200).json(vendaUmVeiculo);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+    static async pegaTodasAsReservasVeiculo ( req, res ) {
+        const { veiculoId } = req.params;
+        try {
+            const todasAsReservasVeiculo = await database.Reservas.findAll({ 
+                where: { 
+                    vendedor_id: Number(veiculoId)
+                } 
+            });
+            return res.status(200).json(todasAsReservasVeiculo);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+
 }
 
 
