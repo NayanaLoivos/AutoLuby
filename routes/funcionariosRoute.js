@@ -9,6 +9,6 @@ router.get('/funcionarios/:id', FuncionarioController.pegaUmFuncionario);
 router.post('/funcionarios', FuncionarioController.criaFuncionario);
 router.put('/funcionarios/:id', FuncionarioController.atualizaFuncionario);
 router.delete('/funcionarios/:id', FuncionarioController.apagaFuncionario);
-router.get('/funcionarios/:funcionarioId/Vendas/:vendasId', FuncionarioController.pegaTodasAsVendas);
-router.get('/funcionarios/:funcionarioId/Reservas/:reservasId', FuncionarioController.pegaTodasAsReservas);
+router.get('/funcionarios/:funcionarioId/Vendas/', FuncionarioController.pegaTodasAsVendasFuncionario);
+router.get('/funcionarios/:funcionarioId/Reservas/', FuncionarioController.pegaTodasAsReservasFuncionario);
 module.exports = router;

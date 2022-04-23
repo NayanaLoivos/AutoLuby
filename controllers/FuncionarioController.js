@@ -48,30 +48,28 @@ class FuncionarioController
             return res.status(500).json(error.message);  
         }
     }    
-    static async pegaTodasAsVendas ( req, res ) {
-        const { funcionarioId, vendasId } = req.params;
+    static async pegaTodasAsVendasFuncionario ( req, res ) {
+        const { funcionarioId } = req.params;
         try {
-            const todasAsVendas = await database.Vendas.findAll({ 
-                where: {     
-                    id: Number(funcionarioId),                
-                    vendedor_id: Number(vendasId)
+            const todasAsVendasFuncionario = await database.Vendas.findAll({ 
+                where: {                                    
+                    vendedor_id: Number(funcionarioId)
                 } 
             });
-            return res.status(200).json(todasAsVendas);
+            return res.status(200).json(todasAsVendasFuncionario);
         } catch (error) {
             return res.status(500).json(error.message);
         }
     }
-    static async pegaTodasAsReservas ( req, res ) {
-        const { funcionarioId, reservasId } = req.params;
+    static async pegaTodasAsReservasFuncionario ( req, res ) {
+        const { funcionarioId } = req.params;
         try {
-            const todasAsReservas = await database.Reservas.findAll({ 
-                where: {     
-                    id: Number(funcionarioId),                
-                    vendedor_id: Number(reservasId)
+            const todasAsReservasFuncionario = await database.Reservas.findAll({ 
+                where: { 
+                    vendedor_id: Number(funcionarioId)
                 } 
             });
-            return res.status(200).json(todasAsReservas);
+            return res.status(200).json(todasAsReservasFuncionario);
         } catch (error) {
             return res.status(500).json(error.message);
         }
