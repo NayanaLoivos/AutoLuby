@@ -47,6 +47,34 @@ class FuncionarioController
         } catch (error) {
             return res.status(500).json(error.message);  
         }
+    }    
+    static async pegaTodasAsVendas ( req, res ) {
+        const { funcionarioId, vendasId } = req.params;
+        try {
+            const todasAsVendas = await database.Vendas.findAll({ 
+                where: {     
+                    id: Number(funcionarioId),                
+                    vendedor_id: Number(vendasId)
+                } 
+            });
+            return res.status(200).json(todasAsVendas);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+    static async pegaTodasAsReservas ( req, res ) {
+        const { funcionarioId, reservasId } = req.params;
+        try {
+            const todasAsReservas = await database.Reservas.findAll({ 
+                where: {     
+                    id: Number(funcionarioId),                
+                    vendedor_id: Number(reservasId)
+                } 
+            });
+            return res.status(200).json(todasAsReservas);
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
     }
 }
 
