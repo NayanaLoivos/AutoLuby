@@ -54,7 +54,17 @@ class VeiculoController
             const vendaUmVeiculo = await database.Vendas.findOne({ 
                 where: {                                    
                     veiculo_id: Number(veiculoId)
-                } 
+                },
+                include:[
+                    {
+                        model: database.Veiculos,
+                        required: true
+                    },
+                    {
+                        model:database.Funcionarios,
+                        required: true
+                    }
+                ]
             });
             return res.status(200).json(vendaUmVeiculo);
         } catch (error) {
@@ -67,7 +77,17 @@ class VeiculoController
             const todasAsReservasVeiculo = await database.Reservas.findAll({ 
                 where: { 
                     vendedor_id: Number(veiculoId)
-                } 
+                },
+                include:[
+                    {
+                        model: database.Veiculos,
+                        required: true
+                    },
+                    {
+                        model:database.Funcionarios,
+                        required: true
+                    }
+                ]
             });
             return res.status(200).json(todasAsReservasVeiculo);
         } catch (error) {
