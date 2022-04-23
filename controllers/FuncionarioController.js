@@ -53,8 +53,19 @@ class FuncionarioController
         try {
             const todasAsVendasFuncionario = await database.Vendas.findAll({ 
                 where: {                                    
-                    vendedor_id: Number(funcionarioId)
-                } 
+                    vendedor_id: Number(funcionarioId)            
+                },
+                //This is a Join
+                include:[
+                    {
+                        model: database.Funcionarios,
+                        required: true
+                    },
+                    {
+                        model: database.Veiculos,
+                        require: true
+                    }
+                ]
             });
             return res.status(200).json(todasAsVendasFuncionario);
         } catch (error) {
@@ -67,7 +78,16 @@ class FuncionarioController
             const todasAsReservasFuncionario = await database.Reservas.findAll({ 
                 where: { 
                     vendedor_id: Number(funcionarioId)
-                } 
+                },
+                include:[
+                    {
+                        model: database.Funcionarios,
+                        required: true
+                    },
+                    {
+                        model: database.Veiculos,
+                        required: true
+                    }                ]
             });
             return res.status(200).json(todasAsReservasFuncionario);
         } catch (error) {
