@@ -3,7 +3,7 @@ const database = require('../models');
 class ReservaController {
     static async pegaTodasAsReservas (req, res) {        
         try {
-            const todasAsReservas = await database.Vendas.findAll({
+            const todasAsReservas = await database.Reservas.findAll({
                 include:[
                     {
                         model: database.Veiculos,
@@ -23,7 +23,7 @@ class ReservaController {
       static async criaReserva (req, res) {
         const novaReserva = req.body;
         try {
-            const novaReservaCriada = await database.Vendas.create(novaReserva);
+            const novaReservaCriada = await database.Reservas.create(novaReserva);
             return res.status(200).json(novaReservaCriada);
         } catch (error) {
             return res.status(500).json(error.message);
