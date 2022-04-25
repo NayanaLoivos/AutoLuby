@@ -1,21 +1,21 @@
 //1) Implemente um método que crie um novo array baseado nos valores passados.
 //Entradas do método (3,a), Resultado do método: ['a', 'a', 'a']
 
-function test1(numero, letra)
+function novoArray(repete, elemento)
 {
     let resultado =[];
-    for (let i = 0; i < numero; i++) {
-        resultado.push(letra);
+    for (let i = 0; i < repete; i++) {
+        resultado.push(elemento);
     }
     return resultado;
 }
 
-console.log(`Test1:`, test1(3,'a'));
+console.log(`Novo array:`, novoArray(3,'a'));
 
 //2)Implemente um método que inverta um array, não utilize métodos nativos do array.
 //Entrada do método ([1,2,3,4]), Resultado do método: [4,3,2,1]
 
-function test2(array)
+function iverteArray(array)
 {
     let arrayNovo = []; 
     for(let i= array.length; i > 0; i--) {
@@ -23,15 +23,15 @@ function test2(array)
     }
     return arrayNovo;
 }
-console.log(`Test2:`,test2([1,2,3,4]));
+console.log(`Iverte array:`, iverteArray([1,2,3,4]));
 
 //3) Implemente um método que limpe os itens desnecessários de um array 
 //(false, undefined, strings vazias, zero, null).Entrada do método ([1,2,'', undefined]), 
 //Resultado do método: [1,2]
 
-function test3(array)
+function limpaItensArray(array)
 {
-    let arrayNecessario = array.filter(numero =>
+    let arrayTratado = array.filter(numero =>
         {
             return numero !== 0
                 && numero !== undefined
@@ -40,29 +40,29 @@ function test3(array)
                 && numero !== ''
         }
     );
-    return arrayNecessario;
+    return arrayTratado;
 }
-console.log(`Test3:`,test3([1, 2,'', undefined]));
+console.log(`Limpa itens do array:`, limpaItensArray([1, 2,'', undefined]));
 
 //4) Implemente um método que a partir de um array de arrays, converta em um objeto
 // com chave e valor. Entrada do método ([["c",2],["d",4]]), Resultado do métdodo: {c:2, d:4}
 
-function test4(array)
+function converteArrayAObjeto(array)
 {
-    let obj ={};
+    let objeto = {};
     for(let i= 0; i < array.length; i++) {
-        let atributo = array[i][0];
-        obj[atributo] = array[i][1];
+        let chave = array[i][0];
+        objeto[chave] = array[i][1];
     }
-    return obj;
+    return objeto;
 }
-console.log(`Test4:`,test4([["c",2],["d",4]]));
+console.log(`Converte array a objeto:`,converteArrayAObjeto([["c",2],["d",4]]));
 
 //5) Implemente um método que retorne um array, sem os itens passados por
 // parâmetro depois do array de entrada. Entrada do método ([5,4,3,2,5], 5,3),
 // Resultado do método: [4,2]
 
-function test5(array, ...inteiro)
+function retornaArrayFiltrado(array, ...inteiro)
 {
     let resultado = [];
     for (let i = 0; i < array.length; i++) {
@@ -80,66 +80,47 @@ function test5(array, ...inteiro)
     return resultado;
 }
 
-console.log(`Test5:`,test5([5,4,3,2,5], 5,3));
+console.log(`retorna apenas a array:`, retornaArrayFiltrado([5,4,3,2,5], 5,3));
 
 //6) Implemente um método que retorne um array, sem valores duplicados.
 //Entrada do método ([1,2,3,3,2,4,5,4,7,3]), Resultado do método: [1,2,3,4,5,7]
 
-function test6(array)
+function arraySemElemDuplicado(array)
 {
-    let resultado = [];
-    for (const item of array) {
-        if(!resultado.includes(item)) {
-            resultado.push(item);
-        }
-    }
-    return resultado;
+  let arraySemRepeticao = [...new Set(array)];
+  return arraySemRepeticao;
 }
-console.log(`Test6:`,test6([1,2,3,3,2,4,5,4,7,3]));
+
+console.log(`array sem elementos duplicados:`, arraySemElemDuplicado([1,2,3,3,2,4,5,4,7,3]));
 
 //7) Implemente um método que compare a igualdade de dois arrays e retorne um valor booleano.
 // Entrada do método ([1,2,3,4],[1,2,3,4]), Resultado do método: true
 
-function test7(array1, array2)
-{
-    let resultado = true;
-    if(array1.length === array2.length) {
-        for (let i = 0; i < array1.length; i++) {
-            if(array1[i] !== array2[i]) {
-                resultado = false;
-                break;
-            }
-        }
-    }else {
-        resultado = false;
-    }
-    return resultado;
+function igualdadeDeArrays(array1,array2) {
+    
+    return Array.isArray(array1) 
+    && Array.isArray(array2) 
+    && array1.length === array2.length 
+    && array1.every((elem, index) => elem === array2[index]);
 }
-console.log(`Test7:`,test7([1,2,3,4],[1,2,3,4]));
+
+console.log("Igualdade de arrays: ", igualdadeDeArrays([1,2,3,4],[1,2,3,4]));
+
 
 //8) Implemente um método que remova os aninhamentos de um array de arrays para um array unico.
 // Entrada do método ([1, 2, [3], [4, 5]]), Resultado do método: [1, 2, 3, 4, 5]
 
-function test8(array)
+function removeAninhamentosArray(array)
 {
-    let resultado = [];
-    for (const elemento of array) {
-        if(!Array.isArray(elemento)) {
-            resultado.push(elemento)
-        }else {
-            for (const arrayElemento of elemento) {
-                resultado.push(arrayElemento)
-            }
-        }
-    }
-    return resultado;
+   return arraySemAninhamentos = array.flat();    
 }
-console.log(`Test8:`,test8([1, 2, [3], [4, 5]]));
+
+console.log(`Remove aninhamentos de array:`,removeAninhamentosArray([1, 2, [3], [4, 5]]));
 
 //9) Implemente um método divida um array por uma quantidade passada por parâmetro.
 // Entrada do método ([1, 2, 3, 4, 5], 2), Resultado do método: [[1, 2], [3, 4], [5]]
 
-function test9(array, divisor)
+function dividirArrayEmPartes(array, divisor)
 {
     let resultado = [];
     let tempArray = [];
@@ -159,12 +140,12 @@ function test9(array, divisor)
     }
     return resultado;
 }
-console.log(`Test9:`,test9([1, 2, 3, 4, 5], 2));
+console.log(`Dividir array em partes:`, dividirArrayEmPartes([1, 2, 3, 4, 5], 2));
 
 //10) Implemente um método que encontre os valores comuns entre dois arrays.
 //Entrada do método ([6, 8], [8, 9]), Resultado do método: [8]
 
-function test10(array1, array2)
+function valoresIguaisArrays(array1, array2)
 {
     let resultado = [];
     for (const array1Elemento of array1) {
@@ -177,4 +158,4 @@ function test10(array1, array2)
     return resultado;
 }
 
-console.log(`Test10:`,test10([6, 8], [8, 9]));
+console.log(`valoresIguaisArrays:`,valoresIguaisArrays([6, 8], [8, 9]));
